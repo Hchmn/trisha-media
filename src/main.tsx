@@ -11,7 +11,7 @@ import { SpotifyProvider } from "./context/SpotifyContext.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SpotifyProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about-you" element={<AboutYouPage />} />

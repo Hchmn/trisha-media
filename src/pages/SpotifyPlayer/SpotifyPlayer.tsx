@@ -29,17 +29,13 @@ function SpotifyPlayer() {
   const [currentTrack, setCurrentTrack] = useState<SpotifyTrack | null>(null);
 
   const [paused, setPaused] = useState(true);
-  const [position, setPosition] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [, setPosition] = useState(0);
+  const [, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.1);
 
   const [minimized, setMinimized] = useState(false);
 
   const { isLoggedIn } = useSpotify();
-
-  // const [isLoggedIn, setIsLoggedIn] = useState(
-  //   () => !!localStorage.getItem("spotify_access_token"),
-  // );
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -51,97 +47,6 @@ function SpotifyPlayer() {
     if (!token) {
       return;
     }
-
-    const transferPlaybackToWebPlayer = async () => {
-      const token = localStorage.getItem("spotify_access_token");
-
-      if (!token || !deviceId) {
-        console.log("Cannot transfer:", {
-          token: !!token,
-          deviceId,
-        });
-
-        return false;
-      }
-
-      const response = await fetch("https://api.spotify.com/v1/me/player", {
-        method: "PUT",
-
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          device_ids: [deviceId],
-          play: false,
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.text();
-
-        console.error("Transfer playback failed:", response.status, error);
-
-        return false;
-      }
-
-      console.log("Playback transferred to web player");
-
-      return true;
-    };
-
-    // 2. YOUR PLAY FUNCTION
-    const playSelectedTrack = async () => {
-      if (!selectedTrack || !deviceId) {
-        return;
-      }
-
-      const token = localStorage.getItem("spotify_access_token");
-
-      if (!token) {
-        return;
-      }
-
-      try {
-        // Transfer from Spotify Desktop/Mobile
-        // back to your website
-        const transferred = await transferPlaybackToWebPlayer();
-
-        if (!transferred) {
-          return;
-        }
-
-        // Play selected song
-        const response = await fetch(
-          `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-          {
-            method: "PUT",
-
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-
-            body: JSON.stringify({
-              uris: [selectedTrack.uri],
-            }),
-          },
-        );
-
-        if (!response.ok) {
-          const error = await response.text();
-
-          console.error("Play failed:", response.status, error);
-
-          return;
-        }
-
-        console.log("Playing:", selectedTrack.name);
-      } catch (error) {
-        console.error("Playback error:", error);
-      }
-    };
 
     const initializePlayer = () => {
       if (!window.Spotify) {

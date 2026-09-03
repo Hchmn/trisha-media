@@ -20,7 +20,6 @@ import {
   sept_img_8,
   sept_img_9,
 } from "../../constants/images";
-import SpotifyPlayer from "../SpotifyPlayer";
 
 interface CustomImageProps {
   imageUrl: string;
