@@ -22,7 +22,7 @@ function SpotifyPlayer() {
 
   const [deviceId, setDeviceId] = useState("");
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Statue lil Eddie");
   const [results, setResults] = useState<SpotifyTrack[]>([]);
   const [selectedTrack, setSelectedTrack] = useState<SpotifyTrack | null>(null);
 
