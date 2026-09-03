@@ -8,6 +8,14 @@ import SpotifyCallback from "./pages/Spotify/SpotifyCallback.tsx";
 import SpotifyPlayer from "./pages/SpotifyPlayer/SpotifyPlayer.tsx";
 import { SpotifyProvider } from "./context/SpotifyContext.tsx";
 
+const redirect = sessionStorage.getItem("redirect");
+
+if (redirect) {
+  sessionStorage.removeItem("redirect");
+
+  window.history.replaceState(null, "", redirect);
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SpotifyProvider>
