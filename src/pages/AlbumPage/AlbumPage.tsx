@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./AlbumPage.module.css";
 import {
+  oceanParkImages,
+  randomDateImages,
   sept_img_1,
   sept_img_10,
   sept_img_11,
@@ -230,10 +232,16 @@ const AlbumPage = () => {
           images={SeptImages2025}
         />
         <CustomImage
-          imageUrl={sept_img_1}
-          title="Our Second Date ❤️"
-          caption="It was only our second date, but somehow being with you already felt so comfortable. Little did I know, moments like this would become memories I'd cherish forever."
-          images={SeptImages2025}
+          imageUrl={oceanParkImages[0]}
+          title="Ocean Park 🐠💕"
+          caption="A day full of laughs, fun, and little adventures at Ocean Park with you. I loved every moment we spent together, but my favorite part wasn't the place—it was getting to experience it all with you. ❤️"
+          images={oceanParkImages}
+        />
+        <CustomImage
+          imageUrl={randomDateImages[23]}
+          title="Our Random Dates 💕"
+          caption="Some of my favorite memories with you are the simple, random dates we shared. It never really mattered where we went or what we did—as long as I was spending that time with you. ❤️"
+          images={randomDateImages}
         />
       </div>
     </div>
